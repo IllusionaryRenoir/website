@@ -70,6 +70,14 @@ body {
     outline: none;
 }
 
+#webrings {
+    display: flex;
+    padding-top: 90px;
+    align-items: center;
+    align-self: center;
+    justify-content: center;
+}
+
 body::after {
     content: "";
     position: fixed;
