@@ -49,12 +49,23 @@ document.getElementById('cmd').addEventListener('keydown', (e) => {
     // we want stuff to happen when enter is pressed...
     if (code === 13) { 
         const pastCommand = document.createElement('div');
-        const command = document.getElementById('cmd').value;
+        let command = document.getElementById('cmd').value;
         const result = document.createElement('div');
         history.push(command);
         historyCount = history.length;
 
-        pastCommand.textContent = '[vael@vaels.net] $ ' + command;
+        pastCommand.textContent = '[vael@vaels.net ~] $ ' + command;
+
+        let args = [];
+
+        if (command.includes(" ")) {
+            args = command.slice(command.indexOf(" ")+1, command.length).split();
+            if (args != ['']) {
+                command = command.slice(0, command.indexOf(" "));
+            }
+            console.log(args);
+        }
+        console.log(command);
 
         switch (command) {
             case 'clear':
@@ -69,11 +80,28 @@ document.getElementById('cmd').addEventListener('keydown', (e) => {
 
                 document.getElementById('cmd').value = "";
                 return;
+            case 'ls':
+                result.textContent = 'secret.txt\t moresecret.txt';
+                break;
+            case 'cat':
+                result.textContent = 'test';
+                break;
             case "help":
-                result.textContent = 'clear';
+                result.textContent = 'help\tls\tcat\tcowsay\tclear';
+                break;
+            case "cowsay":
+                let cowsay = document.createElement('pre');
+                console.log(args[0].length);
+                cowsay.innerHTML = ' ' + '_'.repeat(args[0].length+2) + '\n< ' + args[0] + ' >\n ' + '-'.repeat(args[0].length+2) + '\n';
+                cowsay.innerHTML += '\\   ^__^\n \\  (oo)\\_______\n    (__)\\       )\\/\\ \n\t||----w |\n\t||     ||';
+                result.append(cowsay);
+                break;
+            case "":
                 break;
             default:
                 result.textContent = 'vsh: command not found: ' + command;
+
+            //result.textContent = args;
 
         }
 

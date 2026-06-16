@@ -56,7 +56,9 @@ body {
 
 #info {
     font-weight: bold;
-    border-bottom: 2px dashed rgba(45, 10, 255, 0.5);
+    padding: 5px;
+    margin: 5px;
+    border-bottom: 2px solid rgba(110, 80, 209, 0.5);
 }
 
 #cmd {
@@ -69,6 +71,11 @@ body {
     color: inherit;
     outline: none;
     font-size: 16px;
+}
+
+#description {
+    margin: 5px;
+    padding: 5px;
 }
 
 #webrings {
